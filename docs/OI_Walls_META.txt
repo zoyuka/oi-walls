@@ -1,0 +1,60 @@
+# OI Walls (auto) — META exp 2026-08-24
+declare upper;
+
+input callSym1 = ".META260824C555";
+input callStrike1 = 555.0;
+input callSym2 = ".META260824C545";
+input callStrike2 = 545.0;
+input putSym1 = ".META260824P560";
+input putStrike1 = 560.0;
+input putSym2 = ".META260824P545";
+input putStrike2 = 545.0;
+input showLabels = yes;
+
+def c1OI = open_interest(callSym1, period = AggregationPeriod.DAY);
+def p1OI = open_interest(putSym1,  period = AggregationPeriod.DAY);
+def c1V  = volume(callSym1, period = AggregationPeriod.DAY);
+def p1V  = volume(putSym1,  period = AggregationPeriod.DAY);
+def c2OI = open_interest(callSym2, period = AggregationPeriod.DAY);
+def p2OI = open_interest(putSym2,  period = AggregationPeriod.DAY);
+def c2V  = volume(callSym2, period = AggregationPeriod.DAY);
+def p2V  = volume(putSym2,  period = AggregationPeriod.DAY);
+def c3OI = open_interest(callSym3, period = AggregationPeriod.DAY);
+def p3OI = open_interest(putSym3,  period = AggregationPeriod.DAY);
+def c3V  = volume(callSym3, period = AggregationPeriod.DAY);
+def p3V  = volume(putSym3,  period = AggregationPeriod.DAY);
+
+plot CallWall1 = callStrike1;
+CallWall1.SetDefaultColor(CreateColor(162, 89, 255));
+CallWall1.SetPaintingStrategy(PaintingStrategy.DASHES);
+plot PutWall1 = putStrike1;
+PutWall1.SetDefaultColor(CreateColor(224, 168, 0));
+PutWall1.SetPaintingStrategy(PaintingStrategy.DASHES);
+plot CallWall2 = callStrike2;
+CallWall2.SetDefaultColor(CreateColor(162, 89, 255));
+CallWall2.SetPaintingStrategy(PaintingStrategy.DASHES);
+plot PutWall2 = putStrike2;
+PutWall2.SetDefaultColor(CreateColor(224, 168, 0));
+PutWall2.SetPaintingStrategy(PaintingStrategy.DASHES);
+plot CallWall3 = callStrike3;
+CallWall3.SetDefaultColor(CreateColor(162, 89, 255));
+CallWall3.SetPaintingStrategy(PaintingStrategy.DASHES);
+plot PutWall3 = putStrike3;
+PutWall3.SetDefaultColor(CreateColor(224, 168, 0));
+PutWall3.SetPaintingStrategy(PaintingStrategy.DASHES);
+
+def maxCallOI = Max(c1OI, Max(c2OI, c3OI));
+def maxPutOI  = Max(p1OI, Max(p2OI, p3OI));
+CallWall1.SetLineWeight(if c1OI == maxCallOI then 4 else 2);
+PutWall1.SetLineWeight(if p1OI == maxPutOI then 4 else 2);
+CallWall2.SetLineWeight(if c2OI == maxCallOI then 4 else 2);
+PutWall2.SetLineWeight(if p2OI == maxPutOI then 4 else 2);
+CallWall3.SetLineWeight(if c3OI == maxCallOI then 4 else 2);
+PutWall3.SetLineWeight(if p3OI == maxPutOI then 4 else 2);
+
+AddLabel(showLabels, "C " + AsText(callStrike1, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + c1OI + "  Vol:" + c1V, if c1V > c1OI then Color.WHITE else CreateColor(162, 89, 255));
+AddLabel(showLabels, "P " + AsText(putStrike1, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + p1OI + "  Vol:" + p1V, if p1V > p1OI then Color.WHITE else CreateColor(224, 168, 0));
+AddLabel(showLabels, "C " + AsText(callStrike2, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + c2OI + "  Vol:" + c2V, if c2V > c2OI then Color.WHITE else CreateColor(162, 89, 255));
+AddLabel(showLabels, "P " + AsText(putStrike2, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + p2OI + "  Vol:" + p2V, if p2V > p2OI then Color.WHITE else CreateColor(224, 168, 0));
+AddLabel(showLabels, "C " + AsText(callStrike3, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + c3OI + "  Vol:" + c3V, if c3V > c3OI then Color.WHITE else CreateColor(162, 89, 255));
+AddLabel(showLabels, "P " + AsText(putStrike3, NumberFormat.TWO_DECIMAL_PLACES) + "  OI:" + p3OI + "  Vol:" + p3V, if p3V > p3OI then Color.WHITE else CreateColor(224, 168, 0));
