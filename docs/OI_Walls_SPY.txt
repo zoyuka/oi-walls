@@ -3,10 +3,8 @@ declare upper;
 
 input callSym1 = ".SPY260824C772";
 input callStrike1 = 772.0;
-input callSym2 = ".SPY260824C780";
-input callStrike2 = 780.0;
-input callSym3 = ".SPY260824C768";
-input callStrike3 = 768.0;
+input callSym2 = ".SPY260824C768";
+input callStrike2 = 768.0;
 input putSym1 = ".SPY260824P765";
 input putStrike1 = 765.0;
 input putSym2 = ".SPY260824P756";
