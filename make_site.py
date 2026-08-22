@@ -646,7 +646,6 @@ def gauge_strip(r, label="", W=0.015):
         tick(w.strike, "c" + (" h" if w.volume > w.openInterest else ""), "call wall")
     if r.get("dem"):
         tick(r["dem"][0], "g", "dEM low"); tick(r["dem"][1], "g", "dEM high")
-    tick(r.get("gpeak"), "gm", "gamma magnet")
     tick(r.get("pin"), "pn", "max pain")
     tick(r.get("vwap"), "vw", "VWAP")
     return (f'<div class=gtr>{"".join(ticks)}'
@@ -656,9 +655,8 @@ def dists_text(r):
     spot = r["spot"]
     up = min((c.strike for c in r["calls"] if c.strike >= spot), default=None)
     dn = max((p.strike for p in r["puts"] if p.strike <= spot), default=None)
-    amp = ' <b class=warn title="amplifier day — moves overshoot; respect stops">⚡</b>' if r.get("glong") is False else ""
     return (f'{"▼" + format(100*(dn/spot-1), "+.1f") + "%" if dn else "▼—"} '
-            f'{"▲" + format(100*(up/spot-1), "+.1f") + "%" if up else "▲—"}{amp}')
+            f'{"▲" + format(100*(up/spot-1), "+.1f") + "%" if up else "▲—"}')
 
 def session_autopsy(spx_daily, now_et, vwap_now=None):
     """After the close: what today actually did vs the morning map.
@@ -1001,8 +999,6 @@ def ladder_tiers(label, spot, side, lv_tabs, dem, day_bars, daily_px, bigs,
                         ing.append((p, 0.6, f"prev close {ff(p)}"))
                     elif "pin" in t:
                         ing.append((p, 0.6, f"pin {ff(p)}"))
-                    elif t.startswith("γ") and "flip" not in t:
-                        ing.append((p, 0.5, f"γ magnet {ff(p)}"))
 
     wall_ing(lv_tabs)
     if spy_pack and spy_spot:
@@ -1099,9 +1095,9 @@ def ladder_tiers(label, spot, side, lv_tabs, dem, day_bars, daily_px, bigs,
         tiers[i]["rank"] = rk + 1
     return tiers
 
-def ladder_table(label, spot, side, tiers, mark=None, flip_px=None):
+def ladder_table(label, spot, side, tiers, mark=None):
     """One tbody of price-ordered tier rows: rank badges, strength dots,
-    air-pocket gaps, dealer-flip warning, and a movable "you are here" row."""
+    air-pocket gaps and a movable "you are here" row."""
     ff = (lambda x: f"{x:,.0f}") if spot >= 2000 else (lambda x: f"{x:,.2f}")
     rows = []  # (price, html) — sorted spot-outward at the end
     prev_edge = None
@@ -1120,11 +1116,6 @@ def ladder_table(label, spot, side, tiers, mark=None, flip_px=None):
         rows.append((anchor, f'<tr data-p={anchor:.2f}><td class="lrk{cls}">{t0["rank"]}</td>'
                              f'<td class=lz>{zone}<div class=lstr>{strength}</div></td>'
                              f'<td class=lbits>{" + ".join(bshow)}</td></tr>'))
-    if (flip_px and side < 0 and tiers and flip_px < spot
-            and flip_px >= min(t0["lo"] for t0 in tiers) * 0.995):
-        rows.append((flip_px, f'<tr class=lair data-p={flip_px:.2f}><td colspan=3>'
-                              f'⚠ under ~{ff(flip_px)} dealer hedging flips to amplify — '
-                              f'moves speed up</td></tr>'))
     if mark is not None:
         rows.append((mark["px"], f'<tr class=lmk id=lmk-{label} data-p={mark["px"]:.2f}>'
                                  f'<td colspan=3>→ {mark["lbl"]} {ff(mark["px"])} ←</td></tr>'))
@@ -1134,7 +1125,7 @@ def ladder_table(label, spot, side, tiers, mark=None, flip_px=None):
 
 def plain_read(read_data, regime_dist, breadth_vcls, prem_rank, vix_txt, ahead=None,
                rlz=None, is_opex=False, on_txt=None, term=None, prep=None, ext_txt=None,
-               prem_streak=1, amp_streak=0):
+               prem_streak=1):
     """The top of the page: verdicts in plain English, with the WHY attached.
     Composed from the same signals as everything else — words first, data as receipts."""
     S = []
@@ -1193,16 +1184,11 @@ def plain_read(read_data, regime_dist, breadth_vcls, prem_rank, vix_txt, ahead=N
         S.append(on_txt)
     if ext_txt:
         S.append(ext_txt)
-    shorts = [l for l, r in read_data.items() if r.get("glong") is False]
-    stk = f" — session {amp_streak} in this mode" if amp_streak >= 2 else ""
-    if shorts:
-        S.append(f"<b class=w>It's an amplifier day</b> ({'/'.join(shorts)}{stk}): market makers' hedging "
-                 f"pushes moves along instead of absorbing them, so whatever gets going tends to keep "
-                 f"going — up <i>or</i> down. Wins run further; so do losses. Stops matter more than usual.")
-    else:
-        S.append(f"<b>It's a magnet day{stk}:</b> market makers' hedging leans against moves, so price tends "
-                 "to stall and drift back toward the magnet lines on the charts. Chasing breakouts "
-                 "usually disappoints on days like this.")
+    # (Aug 22: the amplifier/magnet day verdict is GONE. It rested on the naive
+    # dealer-gamma sign assumption — stale OI + a fiction about who's short.
+    # Tested honestly on 3y of hourly tape: day-ahead "trendiness" regime has
+    # zero persistence (corr −0.05) and the follow-through split ran BACKWARDS
+    # from the story. Neither the model nor a measured version earns a seat.)
     if regime_dist is not None:
         t = (f"the uptrend is intact (SPX {regime_dist:+.1f}% above its 50-day average)"
              if regime_dist >= 0 else
@@ -1283,6 +1269,14 @@ def build(fetch):
     """fetch(sym) -> dict(px, px_w, px_d, exp, calls, puts, ems, pin, gflip)."""
     now_utc = dt.datetime.now(dt.timezone.utc)
     now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
+    opex_day = False   # pin is an OPEX-only concept here (measured; audit Sep 22)
+    try:
+        d3o = now_et.date().replace(day=15)
+        while d3o.weekday() != 4:
+            d3o += dt.timedelta(days=1)
+        opex_day = now_et.date() == d3o
+    except Exception:
+        pass
     v = int(now_utc.timestamp())
     # previous build's wall volumes -> momentum (ignore stale gaps > 45 min)
     prev_state = {}
@@ -1331,8 +1325,6 @@ def build(fetch):
                 em_levels += [(tag, a - e), (tag, a + e)]
         wk_levels = [t for t in em_levels if t[0] == "wEM"]
         day_levels = [t for t in em_levels if t[0] == "dEM"]  # wEM lives on the Week tab
-        if d.get("gam") and d["gam"].get("peak"):
-            day_levels.append(("γ", d["gam"]["peak"]))
         # extension ladder: once the day band breaks, moves reached 1.5×EM ~1 in 3
         # days and 2×EM ~1 in 10 (2000–2026 and 2023–2026 agree). Show 1.5× always;
         # show 2× only when today's tape has already broken the band.
@@ -1348,12 +1340,8 @@ def build(fetch):
             except Exception:
                 pass
             day_levels.append(("prev close", a_))
-        g0_ = d.get("gam") or {}
-        if d.get("pin") and (not g0_.get("peak")
-                             or abs(d["pin"] - g0_["peak"]) / float(spot) > 0.0015):
-            day_levels.append(("pin", d["pin"]))
-        if g0_.get("long") is False and g0_.get("flip"):
-            day_levels.append(("γ flip", g0_["flip"]))
+            if opex_day and d.get("pin"):   # pin shown only on OPEX (measured effect)
+                day_levels.append(("pin", d["pin"]))
         chart(f"docs/{label}.png", px, spot, calls, puts, day_levels, "day")
         if d.get("px_w") is not None and len(d["px_w"]):
             chart(f"docs/{label}_w.png", d["px_w"], spot, calls, puts, wk_levels, "week")
@@ -1504,17 +1492,8 @@ def build(fetch):
         if ems.get("week"):  em_bits.append(f"w ±{ems['week'][1]:.0f}")
         if em_bits:
             chips.append(f'<span class="chip e">EM {" · ".join(em_bits)}</span>')
-        if d.get("pin"):
-            chips.append(f'<span class="chip e">pin {fmt_strike(d["pin"])}</span>')
-        g = d.get("gam")
-        if g:
-            if g["long"]:
-                bits = ["🧲 magnet mode (hedging absorbs moves)"]
-                if g.get("peak"): bits.append(f'pull toward ~{g["peak"]:,.0f}')
-            else:
-                bits = ["⚡ amplifier mode (hedging pushes moves)"]
-                if g.get("flip"): bits.append(f'calms down above ~{g["flip"]:,.0f}')
-            chips.append(f'<span class="chip e" title="estimated from option open interest + volatility — the standard \'dealer gamma\' model">{" · ".join(bits)}</span>')
+        if opex_day and d.get("pin"):
+            chips.append(f'<span class="chip e">pin {fmt_strike(d["pin"])} · OPEX</span>')
         fl = d.get("flow")
         if fl and fl[0] is not None and (fl[0] + fl[1]) > 0:
             chips.append(f'<span class="chip e" title="$ premium traded on the front expiry so far '
@@ -1548,8 +1527,7 @@ def build(fetch):
         read_data[label] = {
             "spot": float(spot), "calls": calls, "puts": puts,
             "dem": (ems["day"][0] - ems["day"][1], ems["day"][0] + ems["day"][1]) if ems.get("day") else None,
-            "gpeak": (d.get("gam") or {}).get("peak"), "pin": d.get("pin"),
-            "glong": (d.get("gam") or {}).get("long"),
+            "pin": d.get("pin") if opex_day else None,
             "vwap": float(vwap.iloc[-1]) if vwap is not None else None,
         }
         if label in ("SPX", "QQQ") and d.get("px_d") is not None and len(d["px_d"]) > 50:
@@ -1600,7 +1578,7 @@ def build(fetch):
 <details class=more><summary>levels · flow · exp {exp}</summary>
 <div class=chips>{"".join(chips)}</div>
 <table><tr><th>Wall</th><th>Dist</th><th>OI</th><th>Vol (Δ10m)</th><th>V/OI</th></tr>{trs}</table>
-<a class=btn href="OI_Walls_{label}.txt">ToS study text</a></details></section>""")
+<div class=m style="font-size:11px;margin:4px 0 6px">OI = yesterday's book (OCC refresh ~6am ET) — structure, not live positioning, and no dealer-side guess is made from it. ⚡ vol&gt;OI marks strikes being rebuilt <i>today</i>. Wall hold-rates get their audit Sep 22.</div><a class=btn href="OI_Walls_{label}.txt">ToS study text</a></details></section>""")
         # scanner row from this ticker's own data (indexes included for comparison)
         try:
             hz_ = d.get("hz") or {}
@@ -1738,23 +1716,6 @@ def build(fetch):
                 rk_ = 100 * float((vv_[k] > vv_[lo_:k + 1]).mean())
                 if _bkt(rk_) == b0:
                     prem_streak += 1
-                else:
-                    break
-    except Exception:
-        pass
-    # how long has the gamma regime persisted?
-    amp_streak = 0
-    try:
-        import glob as _g
-        cur_ = (read_data.get("SPX") or {}).get("glong")
-        if cur_ is not None:
-            amp_streak = 1
-            files_ = sorted(_g.glob("data/archive/????-??-??.json"))
-            files_ = [f_ for f_ in files_ if f"{now_et:%Y-%m-%d}" not in f_][-10:]
-            for f_ in reversed(files_):
-                g_ = (json.load(open(f_))["tickers"].get("SPX") or {}).get("gam")
-                if g_ is not None and bool(g_.get("long")) == bool(cur_):
-                    amp_streak += 1
                 else:
                     break
     except Exception:
@@ -1986,14 +1947,11 @@ def build(fetch):
                     eqv_ = float(fq_.Close.iloc[-1]) * fscale[label]
                     pr_ = "ES" if label != "QQQ" else "NQ"
                     mark = {"px": eqv_, "lbl": f"{pr_}→{label} {100*(eqv_/s-1):+.2f}% ≈"}
-            gam_ = (arch.get(label) or {}).get("gam") or {}
-            flip_px = (gam_.get("flip")
-                       if gam_.get("long") and gam_.get("flip") and gam_["flip"] < s else None)
             dn_mark = mark if mark["px"] <= s else None
             up_mark = mark if mark["px"] > s else None
             b_ = [f'<h3 class=lh>{label} <span class=m>below — if it breaks down</span></h3>']
             if dn_t:
-                b_.append(ladder_table(label, s, -1, dn_t, mark=dn_mark, flip_px=flip_px))
+                b_.append(ladder_table(label, s, -1, dn_t, mark=dn_mark))
             else:
                 b_.append('<div class=m>no mapped structure below (thin chains)</div>')
             if up_t:
@@ -2027,7 +1985,7 @@ def build(fetch):
         ladder_sec = ""
     mline = plain_read(read_data, regime_dist, breadth_vcls, prem_rank, vix_note, spx_daily,
                        rlz=rlz, is_opex=is_opex, on_txt=on_txt, term=term, prep=prep,
-                       ext_txt=ext_txt, prem_streak=prem_streak, amp_streak=amp_streak)
+                       ext_txt=ext_txt, prem_streak=prem_streak)
     alike_html = similar_days(spx_daily.get("px5"), spx_daily.get("spot"),
                               float(vh.iloc[-1]) if vh is not None and len(vh) else None,
                               now_et)
@@ -2039,7 +1997,6 @@ def build(fetch):
             "spot": s, "lo": s * (1 - wd), "hi": s * (1 + wd),
             "up": min((cw.strike for cw in r["calls"] if cw.strike >= s), default=None),
             "dn": max((pw.strike for pw in r["puts"] if pw.strike <= s), default=None),
-            "amp": r.get("glong") is False,
         }
     lv_json = json.dumps(lv)
     open("docs/index.html", "w").write(f"""<!doctype html><html><head><meta charset=utf-8>
@@ -2189,7 +2146,7 @@ details.ladup summary{{color:{GRAY};font-size:12.5px;cursor:pointer}}
 EM = expected move (ATM straddle: d = today from prev close, w = by Friday from last Fri close) ·
 1.5×/2×EM = extension zones: once the day band breaks, moves reached 1.5× ~1 in 3 days and 2× ~1 in 10 (2×EM lines appear only after a break) ·
 pin = max pain (where option sellers most want price to close) ·
-🧲/⚡ = the day's personality, estimated from how market makers must hedge today's options: 🧲 magnet mode = their hedging leans AGAINST moves, so price stalls and gravitates to the magnet level into 4pm; ⚡ amplifier mode = their hedging chases moves, so trends and drops both tend to overshoot (traders call this long/short gamma) · <span class=dv>+Δ</span> = vol added since last build ·
+<span class=dv>+Δ</span> = vol added since last build ·
 breadth verdict: swing-horizon context, not a day-trade trigger (weak breadth often bounces short-term) ·
 3mo chart dashes = 20d/50d MAs — the regime filter: long edge lives above the 50d ·
 charts rendered with <a href="https://www.tradingview.com/lightweight-charts/" style="color:#6b6b73">TradingView Lightweight Charts™</a></p></details>
@@ -2306,11 +2263,11 @@ function updOverlay(lab) {{
   const o = CH[lab]; if (!o || !o.ov) return;
   const px = LAST[lab] || LV[lab].spot;
   const g = SD[lab].lv[o.tf] || [];
-  const L1 = [LV[lab].amp ? "⚡ amplifier" : "🧲 magnet"];
+  const L1 = [];
   if (o.tf === "d" || o.tf === "o") {{
     const pin = g.find(l => l.t === "pin");
     if (pin) L1.push("pin " + pin.p);
-    const fl = g.find(l => l.t === "γ flip");
+    const fl = null;
     if (fl) L1.push("flip " + fl.p.toFixed(0));
   }}
   const up = g.filter(l => (l.k === "c" || l.k === "b") && l.p >= px).sort((a, b) => a.p - b.p)[0];
@@ -2633,7 +2590,6 @@ function renderPos() {{
     if (wb.length) bits.push(wb.length + " wall" + (wb.length > 1 ? "s" : "") + " in path: " +
       wb.slice(0, 3).map(w => (w.k === "c" ? "C" : "P") + w.p).join(", "));
     else bits.push("no walls in path");
-    if (LV[lab].amp) bits.push("⚡ amplifier day — moves overshoot, in your favor OR against");
     let beStr = "";
     if (p.be) {{
       const bneed = (p.be / px - 1) * 100 * dir;
@@ -2771,10 +2727,6 @@ function planFor(lab) {{
   if (a.st !== "now" && b.st !== "now")
     L.push(`<b class=w>No clean play on either side right now.</b> Standing aside is a position — most hours look exactly like this, and forcing it is how accounts leak.`);
   L.push(a.txt); L.push(b.txt);
-  if (LV[lab].amp)
-    L.push(`<span class=tm>Amplifier day:</span> if a move does start it tends to travel — the better kind of day for single-leg options, in both directions.`);
-  else
-    L.push(`Magnet day: price stalls while your option bleeds time — the bar for taking a single-leg shot should be higher today.`);
   const IDX = {{SPX: 1, SPY: 1, QQQ: 1}};
   if (b.st !== "never" && MY && MY.put_pnl < -50000 && IDX[lab])
     L.push(`<span class=my>Your history:</span> ${{MY.put_n}} put buys, ${{MY.put_win}}% won, $${{Math.abs(MY.put_pnl).toLocaleString()}} lost — puts are your single most expensive habit. Your three worst trades ever happened in one 48-hour window (Jul 30–31, 2026): $${{(MY.worst3_cost||0).toLocaleString()}} into index puts at your +$${{(MY.peak26||0).toLocaleString()}} peak → −$${{(MY.worst3_burn||0).toLocaleString()}}. The year ended +$${{(MY.final26||0).toLocaleString()}}.`);
@@ -3033,7 +2985,7 @@ async function livePoll() {{
       const gd = document.getElementById("gd-" + lab);
       if (gd) gd.innerHTML = (L.dn ? "▼" + fp((L.dn / px - 1) * 100) : "▼—") + " " +
                              (L.up ? "▲" + fp((L.up / px - 1) * 100) : "▲—") +
-                             (L.amp ? ' <b class=warn title="amplifier day — moves overshoot; respect stops">⚡</b>' : "");
+                             "";
       if (cashOpen()) ladderMark(lab, px);
       if (strm && LAST[lab]) continue;
       const pe = document.getElementById("px-" + lab);
