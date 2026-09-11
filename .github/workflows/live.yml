@@ -1,0 +1,34 @@
+name: Live quote loop
+on:
+  schedule:
+    # hourly restart lattice, 7am–4pm ET: GitHub crons misfire routinely, so every
+    # firing replaces the running loop (concurrency cancel) and a missed one costs
+    # at most ~an hour — the build workflow's watchdog also revives a stale loop.
+    # (EDT; +1h hours in winter)
+    - cron: "0 11,12 * * 1-5"
+    - cron: "31 13 * * 1-5"
+    - cron: "10 14-20 * * 1-5"
+    # overnight lattice: every 3h around the clock (shift length 3.4h -> overlap).
+    # The script itself exits instantly when Globex is closed (weekends, 5-6pm ET),
+    # so firing on all days is safe and covers Sunday-evening reopens too.
+    - cron: "40 */3 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: live-loop
+  cancel-in-progress: true      # afternoon shift replaces the morning one
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 215
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install yfinance websocket-client pywebpush
+      - run: python live_ticker.py
+        env:
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
