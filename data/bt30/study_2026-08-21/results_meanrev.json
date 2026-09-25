@@ -1,0 +1,1930 @@
+{
+ "family": "meanrev",
+ "n_tested": 34,
+ "configs": [
+  {
+   "name": "rsi2_e10_x70_k14",
+   "is": {
+    "total_ret": 29.09,
+    "cagr": 13.54,
+    "sharpe": 1.47,
+    "max_dd": -10.35,
+    "n_trades": 152,
+    "hit": 69.7,
+    "avg_trade": 0.188,
+    "exposure": 22.7,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 10.64,
+    "cagr": 12.44,
+    "sharpe": 1.54,
+    "max_dd": -4.01,
+    "n_trades": 77,
+    "hit": 59.7,
+    "avg_trade": 0.149,
+    "exposure": 29.2,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 42.82,
+    "cagr": 13.21,
+    "sharpe": 1.49,
+    "max_dd": -10.35,
+    "n_trades": 229,
+    "hit": 66.4,
+    "avg_trade": 0.175,
+    "exposure": 24.7,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 33.33,
+    "cagr": 10.53,
+    "sharpe": 1.21,
+    "max_dd": -11.34,
+    "n_trades": 229,
+    "hit": 65.9,
+    "avg_trade": 0.16,
+    "exposure": 24.7,
+    "bars": 5067
+   },
+   "p_boot": 0.06,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e20_x70_k14",
+   "is": {
+    "total_ret": 22.61,
+    "cagr": 10.67,
+    "sharpe": 1.06,
+    "max_dd": -12.47,
+    "n_trades": 235,
+    "hit": 70.6,
+    "avg_trade": 0.105,
+    "exposure": 35.2,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 8.82,
+    "cagr": 10.3,
+    "sharpe": 1.17,
+    "max_dd": -3.7,
+    "n_trades": 107,
+    "hit": 64.5,
+    "avg_trade": 0.096,
+    "exposure": 38.1,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 33.43,
+    "cagr": 10.56,
+    "sharpe": 1.08,
+    "max_dd": -12.47,
+    "n_trades": 342,
+    "hit": 68.7,
+    "avg_trade": 0.102,
+    "exposure": 36.1,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 20.41,
+    "cagr": 6.68,
+    "sharpe": 0.72,
+    "max_dd": -13.91,
+    "n_trades": 342,
+    "hit": 67.0,
+    "avg_trade": 0.087,
+    "exposure": 36.1,
+    "bars": 5067
+   },
+   "p_boot": 0.29,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 20,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e30_x70_k14",
+   "is": {
+    "total_ret": 23.86,
+    "cagr": 11.23,
+    "sharpe": 0.98,
+    "max_dd": -16.25,
+    "n_trades": 301,
+    "hit": 70.1,
+    "avg_trade": 0.09,
+    "exposure": 43.0,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 9.51,
+    "cagr": 11.11,
+    "sharpe": 1.13,
+    "max_dd": -4.2,
+    "n_trades": 134,
+    "hit": 67.2,
+    "avg_trade": 0.085,
+    "exposure": 43.5,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 35.63,
+    "cagr": 11.19,
+    "sharpe": 1.02,
+    "max_dd": -16.25,
+    "n_trades": 435,
+    "hit": 69.2,
+    "avg_trade": 0.089,
+    "exposure": 43.1,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 19.04,
+    "cagr": 6.26,
+    "sharpe": 0.6,
+    "max_dd": -16.78,
+    "n_trades": 435,
+    "hit": 68.0,
+    "avg_trade": 0.074,
+    "exposure": 43.1,
+    "bars": 5067
+   },
+   "p_boot": 0.31,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 30,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi3_e10_x70_k14",
+   "is": {
+    "total_ret": -2.41,
+    "cagr": -1.21,
+    "sharpe": -0.11,
+    "max_dd": -13.93,
+    "n_trades": 61,
+    "hit": 68.9,
+    "avg_trade": -0.019,
+    "exposure": 15.0,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 10.76,
+    "cagr": 12.58,
+    "sharpe": 1.65,
+    "max_dd": -2.88,
+    "n_trades": 39,
+    "hit": 71.8,
+    "avg_trade": 0.281,
+    "exposure": 22.6,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 8.08,
+    "cagr": 2.74,
+    "sharpe": 0.38,
+    "max_dd": -13.93,
+    "n_trades": 100,
+    "hit": 70.0,
+    "avg_trade": 0.098,
+    "exposure": 17.2,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 4.9,
+    "cagr": 1.68,
+    "sharpe": 0.25,
+    "max_dd": -14.6,
+    "n_trades": 100,
+    "hit": 68.0,
+    "avg_trade": 0.083,
+    "exposure": 17.2,
+    "bars": 5067
+   },
+   "p_boot": 0.653,
+   "family": "rsi",
+   "params": {
+    "period": 3,
+    "ent": 10,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi3_e20_x70_k14",
+   "is": {
+    "total_ret": 28.87,
+    "cagr": 13.45,
+    "sharpe": 1.25,
+    "max_dd": -14.51,
+    "n_trades": 134,
+    "hit": 76.9,
+    "avg_trade": 0.21,
+    "exposure": 29.3,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 5.15,
+    "cagr": 6.0,
+    "sharpe": 0.7,
+    "max_dd": -5.12,
+    "n_trades": 60,
+    "hit": 61.7,
+    "avg_trade": 0.102,
+    "exposure": 36.1,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 35.51,
+    "cagr": 11.16,
+    "sharpe": 1.1,
+    "max_dd": -14.51,
+    "n_trades": 194,
+    "hit": 72.2,
+    "avg_trade": 0.177,
+    "exposure": 31.3,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 27.86,
+    "cagr": 8.93,
+    "sharpe": 0.9,
+    "max_dd": -15.25,
+    "n_trades": 194,
+    "hit": 70.1,
+    "avg_trade": 0.162,
+    "exposure": 31.3,
+    "bars": 5067
+   },
+   "p_boot": 0.293,
+   "family": "rsi",
+   "params": {
+    "period": 3,
+    "ent": 20,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi3_e30_x70_k14",
+   "is": {
+    "total_ret": 25.22,
+    "cagr": 11.84,
+    "sharpe": 1.03,
+    "max_dd": -15.85,
+    "n_trades": 181,
+    "hit": 72.4,
+    "avg_trade": 0.144,
+    "exposure": 40.7,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 6.4,
+    "cagr": 7.46,
+    "sharpe": 0.77,
+    "max_dd": -5.36,
+    "n_trades": 73,
+    "hit": 63.0,
+    "avg_trade": 0.103,
+    "exposure": 46.2,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 33.24,
+    "cagr": 10.51,
+    "sharpe": 0.96,
+    "max_dd": -15.85,
+    "n_trades": 254,
+    "hit": 69.7,
+    "avg_trade": 0.132,
+    "exposure": 42.4,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 23.48,
+    "cagr": 7.62,
+    "sharpe": 0.72,
+    "max_dd": -16.72,
+    "n_trades": 254,
+    "hit": 68.9,
+    "avg_trade": 0.117,
+    "exposure": 42.4,
+    "bars": 5067
+   },
+   "p_boot": 0.417,
+   "family": "rsi",
+   "params": {
+    "period": 3,
+    "ent": 30,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi4_e10_x70_k14",
+   "is": {
+    "total_ret": 6.22,
+    "cagr": 3.05,
+    "sharpe": 0.5,
+    "max_dd": -5.23,
+    "n_trades": 30,
+    "hit": 73.3,
+    "avg_trade": 0.223,
+    "exposure": 8.2,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 2.1,
+    "cagr": 2.44,
+    "sharpe": 0.48,
+    "max_dd": -4.75,
+    "n_trades": 18,
+    "hit": 61.1,
+    "avg_trade": 0.135,
+    "exposure": 12.2,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 8.45,
+    "cagr": 2.87,
+    "sharpe": 0.5,
+    "max_dd": -5.23,
+    "n_trades": 48,
+    "hit": 68.8,
+    "avg_trade": 0.19,
+    "exposure": 9.4,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 6.92,
+    "cagr": 2.36,
+    "sharpe": 0.41,
+    "max_dd": -5.28,
+    "n_trades": 48,
+    "hit": 66.7,
+    "avg_trade": 0.175,
+    "exposure": 9.4,
+    "bars": 5067
+   },
+   "p_boot": 0.51,
+   "family": "rsi",
+   "params": {
+    "period": 4,
+    "ent": 10,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi4_e20_x70_k14",
+   "is": {
+    "total_ret": 10.21,
+    "cagr": 4.95,
+    "sharpe": 0.56,
+    "max_dd": -10.8,
+    "n_trades": 80,
+    "hit": 68.8,
+    "avg_trade": 0.143,
+    "exposure": 23.5,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 1.82,
+    "cagr": 2.12,
+    "sharpe": 0.29,
+    "max_dd": -5.12,
+    "n_trades": 45,
+    "hit": 57.8,
+    "avg_trade": 0.059,
+    "exposure": 33.0,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 12.22,
+    "cagr": 4.09,
+    "sharpe": 0.49,
+    "max_dd": -10.8,
+    "n_trades": 125,
+    "hit": 64.8,
+    "avg_trade": 0.113,
+    "exposure": 26.4,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 8.1,
+    "cagr": 2.75,
+    "sharpe": 0.34,
+    "max_dd": -10.83,
+    "n_trades": 125,
+    "hit": 64.8,
+    "avg_trade": 0.098,
+    "exposure": 26.4,
+    "bars": 5067
+   },
+   "p_boot": 0.683,
+   "family": "rsi",
+   "params": {
+    "period": 4,
+    "ent": 20,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi4_e30_x70_k14",
+   "is": {
+    "total_ret": 22.39,
+    "cagr": 10.57,
+    "sharpe": 0.94,
+    "max_dd": -12.16,
+    "n_trades": 119,
+    "hit": 69.7,
+    "avg_trade": 0.192,
+    "exposure": 37.1,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 5.84,
+    "cagr": 6.8,
+    "sharpe": 0.73,
+    "max_dd": -5.33,
+    "n_trades": 59,
+    "hit": 66.1,
+    "avg_trade": 0.115,
+    "exposure": 43.3,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 29.53,
+    "cagr": 9.43,
+    "sharpe": 0.89,
+    "max_dd": -12.16,
+    "n_trades": 178,
+    "hit": 68.5,
+    "avg_trade": 0.166,
+    "exposure": 38.9,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 22.81,
+    "cagr": 7.42,
+    "sharpe": 0.71,
+    "max_dd": -12.87,
+    "n_trades": 178,
+    "hit": 68.0,
+    "avg_trade": 0.151,
+    "exposure": 38.9,
+    "bars": 5067
+   },
+   "p_boot": 0.45,
+   "family": "rsi",
+   "params": {
+    "period": 4,
+    "ent": 30,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x60_k7",
+   "is": {
+    "total_ret": 12.46,
+    "cagr": 6.02,
+    "sharpe": 0.84,
+    "max_dd": -11.97,
+    "n_trades": 163,
+    "hit": 71.2,
+    "avg_trade": 0.09,
+    "exposure": 18.3,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 8.85,
+    "cagr": 10.33,
+    "sharpe": 1.42,
+    "max_dd": -3.19,
+    "n_trades": 83,
+    "hit": 60.2,
+    "avg_trade": 0.119,
+    "exposure": 23.6,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 22.41,
+    "cagr": 7.29,
+    "sharpe": 1.01,
+    "max_dd": -11.97,
+    "n_trades": 246,
+    "hit": 67.5,
+    "avg_trade": 0.1,
+    "exposure": 19.9,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 13.7,
+    "cagr": 4.57,
+    "sharpe": 0.65,
+    "max_dd": -13.08,
+    "n_trades": 246,
+    "hit": 66.3,
+    "avg_trade": 0.085,
+    "exposure": 19.9,
+    "bars": 5067
+   },
+   "p_boot": 0.227,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 60,
+    "K": 7
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e20_x60_k7",
+   "is": {
+    "total_ret": 11.38,
+    "cagr": 5.51,
+    "sharpe": 0.66,
+    "max_dd": -13.46,
+    "n_trades": 264,
+    "hit": 68.2,
+    "avg_trade": 0.058,
+    "exposure": 29.6,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 7.65,
+    "cagr": 8.92,
+    "sharpe": 1.08,
+    "max_dd": -3.79,
+    "n_trades": 121,
+    "hit": 62.8,
+    "avg_trade": 0.078,
+    "exposure": 33.1,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 19.9,
+    "cagr": 6.52,
+    "sharpe": 0.79,
+    "max_dd": -13.46,
+    "n_trades": 385,
+    "hit": 66.5,
+    "avg_trade": 0.064,
+    "exposure": 30.6,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 6.82,
+    "cagr": 2.32,
+    "sharpe": 0.31,
+    "max_dd": -14.01,
+    "n_trades": 385,
+    "hit": 65.2,
+    "avg_trade": 0.049,
+    "exposure": 30.6,
+    "bars": 5067
+   },
+   "p_boot": 0.48,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 20,
+    "ext": 60,
+    "K": 7
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e30_x60_k7",
+   "is": {
+    "total_ret": 11.67,
+    "cagr": 5.65,
+    "sharpe": 0.62,
+    "max_dd": -16.98,
+    "n_trades": 351,
+    "hit": 69.8,
+    "avg_trade": 0.049,
+    "exposure": 37.1,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 8.78,
+    "cagr": 10.25,
+    "sharpe": 1.11,
+    "max_dd": -4.83,
+    "n_trades": 149,
+    "hit": 65.1,
+    "avg_trade": 0.073,
+    "exposure": 39.3,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 21.48,
+    "cagr": 7.01,
+    "sharpe": 0.76,
+    "max_dd": -16.98,
+    "n_trades": 500,
+    "hit": 68.4,
+    "avg_trade": 0.056,
+    "exposure": 37.8,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 4.56,
+    "cagr": 1.56,
+    "sharpe": 0.21,
+    "max_dd": -18.5,
+    "n_trades": 500,
+    "hit": 67.2,
+    "avg_trade": 0.041,
+    "exposure": 37.8,
+    "bars": 5067
+   },
+   "p_boot": 0.547,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 30,
+    "ext": 60,
+    "K": 7
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2s_e90_x30_k14",
+   "is": {
+    "total_ret": -18.55,
+    "cagr": -9.7,
+    "sharpe": -1.23,
+    "max_dd": -20.35,
+    "n_trades": 177,
+    "hit": 48.3,
+    "avg_trade": -0.098,
+    "exposure": 35.8,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": -12.61,
+    "cagr": -14.47,
+    "sharpe": -2.25,
+    "max_dd": -15.08,
+    "n_trades": 69,
+    "hit": 58.0,
+    "avg_trade": -0.175,
+    "exposure": 34.6,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": -28.82,
+    "cagr": -11.16,
+    "sharpe": -1.5,
+    "max_dd": -31.01,
+    "n_trades": 245,
+    "hit": 51.0,
+    "avg_trade": -0.119,
+    "exposure": 35.4,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": -33.87,
+    "cagr": -13.41,
+    "sharpe": -1.83,
+    "max_dd": -35.7,
+    "n_trades": 245,
+    "hit": 50.6,
+    "avg_trade": -0.134,
+    "exposure": 35.4,
+    "bars": 5067
+   },
+   "p_boot": 0.93,
+   "family": "rsi",
+   "params": {
+    "period": 2,
+    "ent": 90,
+    "ext": 30,
+    "K": 14,
+    "side": "short"
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w20_in1.5_k14",
+   "is": {
+    "total_ret": 14.69,
+    "cagr": 7.06,
+    "sharpe": 0.76,
+    "max_dd": -10.55,
+    "n_trades": 84,
+    "hit": 71.4,
+    "avg_trade": 0.183,
+    "exposure": 23.9,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 8.56,
+    "cagr": 9.99,
+    "sharpe": 1.16,
+    "max_dd": -3.05,
+    "n_trades": 43,
+    "hit": 60.5,
+    "avg_trade": 0.21,
+    "exposure": 28.7,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 24.51,
+    "cagr": 7.93,
+    "sharpe": 0.87,
+    "max_dd": -10.55,
+    "n_trades": 127,
+    "hit": 67.7,
+    "avg_trade": 0.192,
+    "exposure": 25.3,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 19.87,
+    "cagr": 6.51,
+    "sharpe": 0.73,
+    "max_dd": -10.57,
+    "n_trades": 127,
+    "hit": 67.7,
+    "avg_trade": 0.177,
+    "exposure": 25.3,
+    "bars": 5067
+   },
+   "p_boot": 0.347,
+   "family": "z",
+   "params": {
+    "W": 20,
+    "zin": 1.5,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w20_in2.0_k14",
+   "is": {
+    "total_ret": 5.4,
+    "cagr": 2.65,
+    "sharpe": 0.37,
+    "max_dd": -13.38,
+    "n_trades": 62,
+    "hit": 71.0,
+    "avg_trade": 0.111,
+    "exposure": 16.8,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 0.9,
+    "cagr": 1.05,
+    "sharpe": 0.18,
+    "max_dd": -5.32,
+    "n_trades": 30,
+    "hit": 60.0,
+    "avg_trade": 0.05,
+    "exposure": 21.1,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 6.35,
+    "cagr": 2.17,
+    "sharpe": 0.32,
+    "max_dd": -13.38,
+    "n_trades": 92,
+    "hit": 67.4,
+    "avg_trade": 0.091,
+    "exposure": 18.1,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 3.47,
+    "cagr": 1.2,
+    "sharpe": 0.19,
+    "max_dd": -13.48,
+    "n_trades": 92,
+    "hit": 66.3,
+    "avg_trade": 0.076,
+    "exposure": 18.1,
+    "bars": 5067
+   },
+   "p_boot": 0.707,
+   "family": "z",
+   "params": {
+    "W": 20,
+    "zin": 2.0,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w20_in2.5_k14",
+   "is": {
+    "total_ret": -1.25,
+    "cagr": -0.62,
+    "sharpe": -0.06,
+    "max_dd": -13.83,
+    "n_trades": 39,
+    "hit": 66.7,
+    "avg_trade": -0.002,
+    "exposure": 10.6,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 8.36,
+    "cagr": 9.76,
+    "sharpe": 1.49,
+    "max_dd": -1.99,
+    "n_trades": 19,
+    "hit": 63.2,
+    "avg_trade": 0.443,
+    "exposure": 14.4,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 7.01,
+    "cagr": 2.39,
+    "sharpe": 0.39,
+    "max_dd": -13.83,
+    "n_trades": 58,
+    "hit": 65.5,
+    "avg_trade": 0.143,
+    "exposure": 11.7,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 5.16,
+    "cagr": 1.77,
+    "sharpe": 0.3,
+    "max_dd": -13.94,
+    "n_trades": 58,
+    "hit": 63.8,
+    "avg_trade": 0.128,
+    "exposure": 11.7,
+    "bars": 5067
+   },
+   "p_boot": 0.587,
+   "family": "z",
+   "params": {
+    "W": 20,
+    "zin": 2.5,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w40_in1.5_k14",
+   "is": {
+    "total_ret": 8.46,
+    "cagr": 4.12,
+    "sharpe": 0.48,
+    "max_dd": -12.4,
+    "n_trades": 54,
+    "hit": 66.7,
+    "avg_trade": 0.179,
+    "exposure": 20.1,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 5.83,
+    "cagr": 6.79,
+    "sharpe": 0.82,
+    "max_dd": -4.36,
+    "n_trades": 26,
+    "hit": 50.0,
+    "avg_trade": 0.236,
+    "exposure": 25.2,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 14.79,
+    "cagr": 4.92,
+    "sharpe": 0.58,
+    "max_dd": -12.4,
+    "n_trades": 80,
+    "hit": 61.3,
+    "avg_trade": 0.198,
+    "exposure": 21.6,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 12.08,
+    "cagr": 4.05,
+    "sharpe": 0.48,
+    "max_dd": -12.59,
+    "n_trades": 80,
+    "hit": 60.0,
+    "avg_trade": 0.183,
+    "exposure": 21.6,
+    "bars": 5067
+   },
+   "p_boot": 0.533,
+   "family": "z",
+   "params": {
+    "W": 40,
+    "zin": 1.5,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w40_in2.0_k14",
+   "is": {
+    "total_ret": -3.63,
+    "cagr": -1.82,
+    "sharpe": -0.17,
+    "max_dd": -14.66,
+    "n_trades": 37,
+    "hit": 54.1,
+    "avg_trade": -0.067,
+    "exposure": 13.7,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 6.5,
+    "cagr": 7.58,
+    "sharpe": 1.04,
+    "max_dd": -4.22,
+    "n_trades": 22,
+    "hit": 63.6,
+    "avg_trade": 0.307,
+    "exposure": 18.1,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 2.63,
+    "cagr": 0.91,
+    "sharpe": 0.15,
+    "max_dd": -14.66,
+    "n_trades": 59,
+    "hit": 57.6,
+    "avg_trade": 0.072,
+    "exposure": 15.0,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 0.83,
+    "cagr": 0.29,
+    "sharpe": 0.08,
+    "max_dd": -15.15,
+    "n_trades": 59,
+    "hit": 55.9,
+    "avg_trade": 0.057,
+    "exposure": 15.0,
+    "bars": 5067
+   },
+   "p_boot": 0.8,
+   "family": "z",
+   "params": {
+    "W": 40,
+    "zin": 2.0,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w40_in2.5_k14",
+   "is": {
+    "total_ret": -5.48,
+    "cagr": -2.76,
+    "sharpe": -0.43,
+    "max_dd": -11.75,
+    "n_trades": 24,
+    "hit": 50.0,
+    "avg_trade": -0.201,
+    "exposure": 8.6,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 11.19,
+    "cagr": 13.09,
+    "sharpe": 1.89,
+    "max_dd": -1.99,
+    "n_trades": 16,
+    "hit": 75.0,
+    "avg_trade": 0.686,
+    "exposure": 13.0,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 5.1,
+    "cagr": 1.75,
+    "sharpe": 0.31,
+    "max_dd": -11.75,
+    "n_trades": 40,
+    "hit": 60.0,
+    "avg_trade": 0.154,
+    "exposure": 9.9,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 3.85,
+    "cagr": 1.32,
+    "sharpe": 0.24,
+    "max_dd": -12.07,
+    "n_trades": 40,
+    "hit": 57.5,
+    "avg_trade": 0.139,
+    "exposure": 9.9,
+    "bars": 5067
+   },
+   "p_boot": 0.653,
+   "family": "z",
+   "params": {
+    "W": 40,
+    "zin": 2.5,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "z_w20_in2.0_k7",
+   "is": {
+    "total_ret": 4.82,
+    "cagr": 2.37,
+    "sharpe": 0.37,
+    "max_dd": -10.01,
+    "n_trades": 67,
+    "hit": 65.7,
+    "avg_trade": 0.094,
+    "exposure": 13.0,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 5.13,
+    "cagr": 5.97,
+    "sharpe": 0.99,
+    "max_dd": -3.04,
+    "n_trades": 31,
+    "hit": 54.8,
+    "avg_trade": 0.179,
+    "exposure": 13.5,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 10.2,
+    "cagr": 3.44,
+    "sharpe": 0.53,
+    "max_dd": -10.01,
+    "n_trades": 98,
+    "hit": 62.2,
+    "avg_trade": 0.121,
+    "exposure": 13.2,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 7.02,
+    "cagr": 2.39,
+    "sharpe": 0.38,
+    "max_dd": -10.09,
+    "n_trades": 98,
+    "hit": 61.2,
+    "avg_trade": 0.106,
+    "exposure": 13.2,
+    "bars": 5067
+   },
+   "p_boot": 0.493,
+   "family": "z",
+   "params": {
+    "W": 20,
+    "zin": 2.0,
+    "K": 7
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_th10_h1d",
+   "is": {
+    "total_ret": 12.45,
+    "cagr": 6.01,
+    "sharpe": 1.12,
+    "max_dd": -8.18,
+    "n_trades": 35,
+    "hit": 74.3,
+    "avg_trade": 0.36,
+    "exposure": 7.7,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 3.84,
+    "cagr": 4.47,
+    "sharpe": 1.02,
+    "max_dd": -2.76,
+    "n_trades": 19,
+    "hit": 57.9,
+    "avg_trade": 0.217,
+    "exposure": 8.9,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 16.76,
+    "cagr": 5.54,
+    "sharpe": 1.09,
+    "max_dd": -8.18,
+    "n_trades": 54,
+    "hit": 68.5,
+    "avg_trade": 0.309,
+    "exposure": 8.1,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 14.91,
+    "cagr": 4.96,
+    "sharpe": 0.98,
+    "max_dd": -8.21,
+    "n_trades": 54,
+    "hit": 68.5,
+    "avg_trade": 0.294,
+    "exposure": 8.1,
+    "bars": 5067
+   },
+   "p_boot": 0.113,
+   "family": "ibs",
+   "params": {
+    "th": 0.1,
+    "hold_days": 1
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_th10_h2d",
+   "is": {
+    "total_ret": 16.36,
+    "cagr": 7.83,
+    "sharpe": 1.27,
+    "max_dd": -8.93,
+    "n_trades": 35,
+    "hit": 80.0,
+    "avg_trade": 0.459,
+    "exposure": 13.8,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 7.57,
+    "cagr": 8.83,
+    "sharpe": 1.51,
+    "max_dd": -5.67,
+    "n_trades": 18,
+    "hit": 72.2,
+    "avg_trade": 0.429,
+    "exposure": 16.8,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 25.16,
+    "cagr": 8.13,
+    "sharpe": 1.34,
+    "max_dd": -8.93,
+    "n_trades": 53,
+    "hit": 77.4,
+    "avg_trade": 0.449,
+    "exposure": 14.7,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 23.21,
+    "cagr": 7.54,
+    "sharpe": 1.25,
+    "max_dd": -8.99,
+    "n_trades": 53,
+    "hit": 77.4,
+    "avg_trade": 0.434,
+    "exposure": 14.7,
+    "bars": 5067
+   },
+   "p_boot": 0.063,
+   "family": "ibs",
+   "params": {
+    "th": 0.1,
+    "hold_days": 2
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_th20_h1d",
+   "is": {
+    "total_ret": 5.08,
+    "cagr": 2.49,
+    "sharpe": 0.39,
+    "max_dd": -9.21,
+    "n_trades": 66,
+    "hit": 62.1,
+    "avg_trade": 0.098,
+    "exposure": 16.6,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 5.51,
+    "cagr": 6.42,
+    "sharpe": 1.09,
+    "max_dd": -3.37,
+    "n_trades": 30,
+    "hit": 56.7,
+    "avg_trade": 0.197,
+    "exposure": 16.7,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 10.87,
+    "cagr": 3.66,
+    "sharpe": 0.58,
+    "max_dd": -9.21,
+    "n_trades": 96,
+    "hit": 60.4,
+    "avg_trade": 0.129,
+    "exposure": 16.6,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 7.74,
+    "cagr": 2.63,
+    "sharpe": 0.43,
+    "max_dd": -9.64,
+    "n_trades": 96,
+    "hit": 59.4,
+    "avg_trade": 0.114,
+    "exposure": 16.6,
+    "bars": 5067
+   },
+   "p_boot": 0.51,
+   "family": "ibs",
+   "params": {
+    "th": 0.2,
+    "hold_days": 1
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_th20_h2d",
+   "is": {
+    "total_ret": 11.22,
+    "cagr": 5.43,
+    "sharpe": 0.7,
+    "max_dd": -10.76,
+    "n_trades": 59,
+    "hit": 64.4,
+    "avg_trade": 0.205,
+    "exposure": 28.0,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 6.0,
+    "cagr": 6.99,
+    "sharpe": 0.95,
+    "max_dd": -7.54,
+    "n_trades": 27,
+    "hit": 66.7,
+    "avg_trade": 0.239,
+    "exposure": 26.9,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 17.9,
+    "cagr": 5.9,
+    "sharpe": 0.77,
+    "max_dd": -10.76,
+    "n_trades": 86,
+    "hit": 65.1,
+    "avg_trade": 0.216,
+    "exposure": 27.7,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 14.91,
+    "cagr": 4.96,
+    "sharpe": 0.66,
+    "max_dd": -10.85,
+    "n_trades": 86,
+    "hit": 65.1,
+    "avg_trade": 0.201,
+    "exposure": 27.7,
+    "bars": 5067
+   },
+   "p_boot": 0.47,
+   "family": "ibs",
+   "params": {
+    "th": 0.2,
+    "hold_days": 2
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_lag_th10_h1d",
+   "is": {
+    "total_ret": 4.78,
+    "cagr": 2.35,
+    "sharpe": 0.72,
+    "max_dd": -3.01,
+    "n_trades": 39,
+    "hit": 64.1,
+    "avg_trade": 0.137,
+    "exposure": 6.6,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": -1.45,
+    "cagr": -1.68,
+    "sharpe": -0.54,
+    "max_dd": -3.75,
+    "n_trades": 20,
+    "hit": 45.0,
+    "avg_trade": -0.057,
+    "exposure": 7.6,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 3.26,
+    "cagr": 1.12,
+    "sharpe": 0.36,
+    "max_dd": -3.75,
+    "n_trades": 59,
+    "hit": 57.6,
+    "avg_trade": 0.071,
+    "exposure": 6.9,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 1.46,
+    "cagr": 0.51,
+    "sharpe": 0.17,
+    "max_dd": -4.15,
+    "n_trades": 59,
+    "hit": 55.9,
+    "avg_trade": 0.056,
+    "exposure": 6.9,
+    "bars": 5067
+   },
+   "p_boot": 0.507,
+   "family": "ibs",
+   "params": {
+    "th": 0.1,
+    "hold_days": 1,
+    "lagged": true
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "ibs_lag_th20_h1d",
+   "is": {
+    "total_ret": 0.04,
+    "cagr": 0.02,
+    "sharpe": 0.03,
+    "max_dd": -4.77,
+    "n_trades": 84,
+    "hit": 51.2,
+    "avg_trade": 0.017,
+    "exposure": 14.2,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": -2.39,
+    "cagr": -2.76,
+    "sharpe": -0.61,
+    "max_dd": -5.46,
+    "n_trades": 37,
+    "hit": 48.6,
+    "avg_trade": -0.049,
+    "exposure": 14.3,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": -2.35,
+    "cagr": -0.82,
+    "sharpe": -0.16,
+    "max_dd": -5.46,
+    "n_trades": 121,
+    "hit": 50.4,
+    "avg_trade": -0.003,
+    "exposure": 14.2,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": -5.81,
+    "cagr": -2.06,
+    "sharpe": -0.44,
+    "max_dd": -6.48,
+    "n_trades": 121,
+    "hit": 49.6,
+    "avg_trade": -0.018,
+    "exposure": 14.2,
+    "bars": 5067
+   },
+   "p_boot": 0.9,
+   "family": "ibs",
+   "params": {
+    "th": 0.2,
+    "hold_days": 1,
+    "lagged": true
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "vwapfade_0.3pct",
+   "is": {
+    "total_ret": -2.56,
+    "cagr": -1.28,
+    "sharpe": -0.21,
+    "max_dd": -11.59,
+    "n_trades": 136,
+    "hit": 51.5,
+    "avg_trade": -0.002,
+    "exposure": 10.7,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": -0.38,
+    "cagr": -0.45,
+    "sharpe": -0.08,
+    "max_dd": -3.54,
+    "n_trades": 63,
+    "hit": 58.7,
+    "avg_trade": 0.01,
+    "exposure": 11.4,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": -2.93,
+    "cagr": -1.03,
+    "sharpe": -0.18,
+    "max_dd": -11.59,
+    "n_trades": 199,
+    "hit": 53.8,
+    "avg_trade": 0.002,
+    "exposure": 10.9,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": -8.56,
+    "cagr": -3.07,
+    "sharpe": -0.59,
+    "max_dd": -13.64,
+    "n_trades": 199,
+    "hit": 53.8,
+    "avg_trade": -0.013,
+    "exposure": 10.9,
+    "bars": 5067
+   },
+   "p_boot": 0.877,
+   "family": "vwap",
+   "params": {
+    "dev": 0.003
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "vwapfade_0.5pct",
+   "is": {
+    "total_ret": -7.88,
+    "cagr": -4.0,
+    "sharpe": -0.89,
+    "max_dd": -11.94,
+    "n_trades": 57,
+    "hit": 45.6,
+    "avg_trade": -0.126,
+    "exposure": 4.5,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": -2.46,
+    "cagr": -2.85,
+    "sharpe": -1.02,
+    "max_dd": -3.69,
+    "n_trades": 24,
+    "hit": 45.8,
+    "avg_trade": -0.087,
+    "exposure": 4.6,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": -10.15,
+    "cagr": -3.66,
+    "sharpe": -0.9,
+    "max_dd": -12.55,
+    "n_trades": 81,
+    "hit": 45.7,
+    "avg_trade": -0.114,
+    "exposure": 4.5,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": -12.31,
+    "cagr": -4.47,
+    "sharpe": -1.11,
+    "max_dd": -14.31,
+    "n_trades": 81,
+    "hit": 43.2,
+    "avg_trade": -0.129,
+    "exposure": 4.5,
+    "bars": 5067
+   },
+   "p_boot": 0.99,
+   "family": "vwap",
+   "params": {
+    "dev": 0.005
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_vix20",
+   "is": {
+    "total_ret": 20.41,
+    "cagr": 9.68,
+    "sharpe": 1.49,
+    "max_dd": -3.51,
+    "n_trades": 130,
+    "hit": 70.0,
+    "avg_trade": 0.16,
+    "exposure": 19.0,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 2.04,
+    "cagr": 2.37,
+    "sharpe": 0.41,
+    "max_dd": -4.01,
+    "n_trades": 60,
+    "hit": 53.3,
+    "avg_trade": 0.05,
+    "exposure": 22.9,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 22.87,
+    "cagr": 7.43,
+    "sharpe": 1.17,
+    "max_dd": -4.9,
+    "n_trades": 190,
+    "hit": 64.7,
+    "avg_trade": 0.125,
+    "exposure": 20.2,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 16.06,
+    "cagr": 5.32,
+    "sharpe": 0.85,
+    "max_dd": -5.24,
+    "n_trades": 190,
+    "hit": 64.2,
+    "avg_trade": 0.11,
+    "exposure": 20.2,
+    "bars": 5067
+   },
+   "p_boot": 0.187,
+   "family": "rsi+vixgate",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14,
+    "vix_lt": 20,
+    "base": "rsi2_e10_x70_k14"
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_vix25",
+   "is": {
+    "total_ret": 16.45,
+    "cagr": 7.87,
+    "sharpe": 1.03,
+    "max_dd": -9.69,
+    "n_trades": 147,
+    "hit": 70.1,
+    "avg_trade": 0.123,
+    "exposure": 21.9,
+    "bars": 3546
+   },
+   "oos": {
+    "total_ret": 7.65,
+    "cagr": 8.93,
+    "sharpe": 1.24,
+    "max_dd": -4.01,
+    "n_trades": 72,
+    "hit": 58.3,
+    "avg_trade": 0.119,
+    "exposure": 27.2,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 25.36,
+    "cagr": 8.19,
+    "sharpe": 1.09,
+    "max_dd": -9.69,
+    "n_trades": 219,
+    "hit": 66.2,
+    "avg_trade": 0.122,
+    "exposure": 23.5,
+    "bars": 5067
+   },
+   "full_3bp": {
+    "total_ret": 17.38,
+    "cagr": 5.74,
+    "sharpe": 0.78,
+    "max_dd": -10.71,
+    "n_trades": 219,
+    "hit": 65.8,
+    "avg_trade": 0.107,
+    "exposure": 23.5,
+    "bars": 5067
+   },
+   "p_boot": 0.213,
+   "family": "rsi+vixgate",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14,
+    "vix_lt": 25,
+    "base": "rsi2_e10_x70_k14"
+   },
+   "symbol": "SPY",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_vix20_QQQ_60m",
+   "is": {
+    "total_ret": 2.34,
+    "cagr": 1.16,
+    "sharpe": 0.17,
+    "max_dd": -9.57,
+    "n_trades": 137,
+    "hit": 66.4,
+    "avg_trade": 0.036,
+    "exposure": 21.6,
+    "bars": 3547
+   },
+   "oos": {
+    "total_ret": 15.35,
+    "cagr": 18.01,
+    "sharpe": 1.65,
+    "max_dd": -3.34,
+    "n_trades": 63,
+    "hit": 65.1,
+    "avg_trade": 0.245,
+    "exposure": 24.7,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 18.05,
+    "cagr": 5.95,
+    "sharpe": 0.65,
+    "max_dd": -9.57,
+    "n_trades": 200,
+    "hit": 66.0,
+    "avg_trade": 0.102,
+    "exposure": 22.5,
+    "bars": 5068
+   },
+   "full_3bp": {
+    "total_ret": 11.19,
+    "cagr": 3.76,
+    "sharpe": 0.43,
+    "max_dd": -11.9,
+    "n_trades": 200,
+    "hit": 65.0,
+    "avg_trade": 0.087,
+    "exposure": 22.5,
+    "bars": 5068
+   },
+   "p_boot": 0.497,
+   "family": "rsi_confirm",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14,
+    "vix_lt": 20,
+    "base": "rsi2_e10_x70_k14"
+   },
+   "symbol": "QQQ",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_vix20_SPY_30m",
+   "is": {
+    "total_ret": -0.33,
+    "cagr": -1.98,
+    "sharpe": -0.22,
+    "max_dd": -2.86,
+    "n_trades": 25,
+    "hit": 56.0,
+    "avg_trade": 0.003,
+    "exposure": 25.4,
+    "bars": 539
+   },
+   "oos": {
+    "total_ret": -0.71,
+    "cagr": -9.54,
+    "sharpe": -2.3,
+    "max_dd": -1.41,
+    "n_trades": 7,
+    "hit": 42.9,
+    "avg_trade": -0.085,
+    "exposure": 23.3,
+    "bars": 232
+   },
+   "full": {
+    "total_ret": -1.03,
+    "cagr": -4.32,
+    "sharpe": -0.61,
+    "max_dd": -3.02,
+    "n_trades": 32,
+    "hit": 53.1,
+    "avg_trade": -0.016,
+    "exposure": 24.8,
+    "bars": 771
+   },
+   "full_3bp": {
+    "total_ret": -1.98,
+    "cagr": -8.14,
+    "sharpe": -1.21,
+    "max_dd": -3.49,
+    "n_trades": 32,
+    "hit": 50.0,
+    "avg_trade": -0.031,
+    "exposure": 24.8,
+    "bars": 771
+   },
+   "p_boot": 0.66,
+   "family": "rsi_confirm",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14,
+    "vix_lt": 20,
+    "base": "rsi2_e10_x70_k14"
+   },
+   "symbol": "SPY",
+   "tf": "30m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_QQQ_60m",
+   "is": {
+    "total_ret": 11.42,
+    "cagr": 5.53,
+    "sharpe": 0.53,
+    "max_dd": -14.48,
+    "n_trades": 159,
+    "hit": 67.3,
+    "avg_trade": 0.09,
+    "exposure": 24.9,
+    "bars": 3547
+   },
+   "oos": {
+    "total_ret": 23.25,
+    "cagr": 27.44,
+    "sharpe": 2.12,
+    "max_dd": -4.49,
+    "n_trades": 78,
+    "hit": 66.7,
+    "avg_trade": 0.288,
+    "exposure": 31.0,
+    "bars": 1521
+   },
+   "full": {
+    "total_ret": 37.33,
+    "cagr": 11.67,
+    "sharpe": 1.01,
+    "max_dd": -14.48,
+    "n_trades": 237,
+    "hit": 67.1,
+    "avg_trade": 0.155,
+    "exposure": 26.7,
+    "bars": 5068
+   },
+   "full_3bp": {
+    "total_ret": 27.92,
+    "cagr": 8.95,
+    "sharpe": 0.8,
+    "max_dd": -16.5,
+    "n_trades": 237,
+    "hit": 66.2,
+    "avg_trade": 0.14,
+    "exposure": 26.7,
+    "bars": 5068
+   },
+   "p_boot": 0.24,
+   "family": "rsi_confirm",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "QQQ",
+   "tf": "60m"
+  },
+  {
+   "name": "rsi2_e10_x70_k14_SPY_30m",
+   "is": {
+    "total_ret": 0.34,
+    "cagr": 2.09,
+    "sharpe": 0.3,
+    "max_dd": -2.86,
+    "n_trades": 26,
+    "hit": 57.7,
+    "avg_trade": 0.029,
+    "exposure": 25.8,
+    "bars": 539
+   },
+   "oos": {
+    "total_ret": -0.71,
+    "cagr": -9.54,
+    "sharpe": -2.3,
+    "max_dd": -1.41,
+    "n_trades": 7,
+    "hit": 42.9,
+    "avg_trade": -0.085,
+    "exposure": 23.3,
+    "bars": 232
+   },
+   "full": {
+    "total_ret": -0.37,
+    "cagr": -1.56,
+    "sharpe": -0.19,
+    "max_dd": -3.02,
+    "n_trades": 33,
+    "hit": 54.5,
+    "avg_trade": 0.005,
+    "exposure": 25.0,
+    "bars": 771
+   },
+   "full_3bp": {
+    "total_ret": -1.35,
+    "cagr": -5.62,
+    "sharpe": -0.79,
+    "max_dd": -3.49,
+    "n_trades": 33,
+    "hit": 51.5,
+    "avg_trade": -0.01,
+    "exposure": 25.0,
+    "bars": 771
+   },
+   "p_boot": 0.557,
+   "family": "rsi_confirm",
+   "params": {
+    "period": 2,
+    "ent": 10,
+    "ext": 70,
+    "K": 14
+   },
+   "symbol": "SPY",
+   "tf": "30m"
+  }
+ ]
+}
