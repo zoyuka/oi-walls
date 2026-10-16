@@ -1,0 +1,52 @@
+{
+  "A_rsi2_hourly_dipbuy": {
+    "claim": "SPY 60m RSI(2)<10 long, exit RSI>70 or 14 bars; IS 1.47 / OOS 1.54, p_boot 0.06; IBS<=0.10 close-bar cousin IS 1.27 / OOS 1.51",
+    "1_code_audit": "CLEAN. Exact metric reproduction through untouched harness; truncation test 0/25 mismatches (signal at t uses only data <= t); fills at signal-bar close per harness convention; +1-bar execution stress: full 1.49->1.11, OOS 1.54->1.09 (edge does not need instant fills).",
+    "2_parameter_plateau": "PASS (strongest evidence). All 36 neighborhood cells (ent{5,10,15,20} x exit{60,70,80} x K{7,14,21}) OOS-positive: min 0.78, median 1.31, max 1.66; chosen cell 1.54 = 83rd pctile, not a spike.",
+    "3_subperiods": "PASS. All 6 half-year windows positive: 2.53, 2.51, 0.42, 1.44, 1.05, 1.87; excluding 2025-03-15..05-31 crash/rebound full Sharpe RISES 1.49->1.59.",
+    "4_top_trade_concentration": "HIT. Top-5 trades = 34.3% of summed trade PnL; full 1.49->1.03 after removal (survives), but OOS 1.54->0.43 after removing top-5 OOS trades (3 of 5 best are Apr-2025/Mar-2026 rebounds). IBS cousin worse: 51% in top-5, OOS 1.51->-0.62.",
+    "5_deep_history": "PASS. Daily RSI2<10 analog on GSPC ann Sharpe by decade: 1950s -0.05, 1960s -0.85, 1970s -0.57, 1980s +0.16, 1990s +1.05, 2000s +0.43, 2010s +0.35, 2020s +0.61 - positive 4 consecutive decades post-1990 (SPY 1993+: 1.46/0.48/0.38/0.71), confirming the modern-regime prior.",
+    "6_cost_curve": "PASS. full/OOS Sharpe: 1.5bp 1.49/1.54, 3bp 1.21/1.19, 5bp 0.84/0.74; full-sample breakeven ~9bp/side (0.09 at 9bp).",
+    "7_overlap": "IBS 'independent confirmation' is NOT independent: 96% of IBS trades overlap an A trade (daily corr 0.445). A vs B daily corr 0.121, A vs C 0.506.",
+    "8_multiplicity": "FAIL. Null = 167 random matched-profile strategies, 200 experiments: expected max OOS Sharpe 2.73 (p95 3.39), P(max>=1.54)=1.00; pipeline-faithful bar (max OOS of top-15-by-IS) mean 1.83, P(null>=1.54)=0.70; IS-best-null OOS P=0.075. The OOS 1.54 headline is within pure selection reach on this tape.",
+    "verdict": "WEAKENED",
+    "one_line": "Genuine, parameter-robust, all-window-positive phenomenon consistent with 35 years of post-1990 daily mean reversion, but its OOS 1.54 cannot be distinguished from selection across 167 configs (pipeline null mean 1.83, P=0.70) and collapses to 0.43 without its 5 best OOS trades - size it for a true Sharpe nearer 1.0 than 1.5."
+  },
+  "B_monday_weekend_drift": {
+    "claim": "dow_mon: long Mondays (incl. weekend gap) SPY 60m, IS 0.88 / OOS 2.69, p 0.077; ES Fri-17:00->Mon-10:00 hold IS 0.74 / OOS 1.66 (NQ 1.08/1.60)",
+    "1_code_audit": "CLEAN. Exact reproduction; want.shift(-1) uses only the deterministic exchange calendar (no price lookahead); +1-bar shift kills it (OOS 2.69->-0.42) proving 100% of the edge is the Fri-close->Mon-10:30 leg (weekend gap + first hour) - an attribution fact, executable via Friday MOC, not a leak.",
+    "2_parameter_plateau": "n/a (calendar rule; other weekdays: tue 0.13, wed 0.84, thu -0.29, fri -0.02 full Sharpe - Monday is the lone positive outlier of 5).",
+    "3_subperiods": "MIXED. dow_mon by window: 2.92, 0.55, -1.33, 1.55, 3.40, 2.48 (4 of 6 positive, not one-window); ES weekend: 0.09, 1.52, -0.80, 4.97, 0.63, 3.59. Crash exclusion changes nothing (1.39->1.39).",
+    "4_top_trade_concentration": "dow_mon SURVIVES: full 1.39->0.91, OOS 2.69->1.35 minus top-5 (35.9% of PnL). ES weekend FAILS: top-5 weekends = 57.8% of summed trade PnL, OOS 1.66->0.02 after removal.",
+    "5_deep_history": "KILL SHOT. Monday close-to-close mean by decade, GSPC: 1950s -12.8bp (t -3.24), 1960s -15.8 (t -4.65), 1970s -12.0, 1980s -10.7, 1990s +11.9, 2000s -1.9 (t -0.27), 2010s +0.2 (t 0.04), 2020s +11.7 (t 1.50); SPY 1993+ agrees (2000s +0.9, 2010s +1.5, 2020s +13.4). The effect was significantly NEGATIVE for four decades and dead-zero for the two decades immediately before this sample: recent-regime only, per the pre-registered kill rule.",
+    "6_cost_curve": "PASS for dow_mon (5bp: full 0.86, OOS 2.13; breakeven ~10-11bp); ES weekend marginal (5bp full 0.38, breakeven ~7bp).",
+    "7_overlap": "dow_mon vs ES-weekend daily corr 0.603 (0.594 Mondays-only) - confirmed same phenomenon, so the 'two datasets' are ~one bet, not independent evidence; corr to A only 0.121.",
+    "8_multiplicity": "dow_mon is the ONLY candidate to clear the pipeline-faithful bar: OOS 2.69 vs null top-15-by-IS max-OOS mean 1.90, P=0.06 (IS-best-null P=0.01); harsh max-of-167 bar P=0.555. ES weekend fails everything (P=0.70 pipeline, 1.00 harsh).",
+    "verdict": "KILLED",
+    "one_line": "The 2020s Monday/weekend drift is real in-sample (only candidate to beat the multiplicity bar, P=0.06) but GSPC Mondays averaged -11 to -16bp (t to -4.65) from 1950-1989 and 0.2 to -1.9bp in 2000-2019 - a sign-flipping anomaly with zero economic anchor is a regime bet, not an edge; the ES leg is additionally 5 weekends (58% of PnL, OOS 0.02 without them)."
+  },
+  "C_realized_vol_targeting": {
+    "claim": "vt_33_15: pos=min(1, 15%/rv33h) on SPY 60m; full Sharpe 1.54 vs bench 1.41, maxDD -12.5% vs -19.4%",
+    "1_code_audit": "CLEAN. Exact reproduction; truncation test 0/25 mismatches; rv uses only completed-bar closes; harness adds the bar of delay.",
+    "2_parameter_plateau": "PASS. 12 cells (rv{22,33,44,66} x tgt{12,15,18}): full Sharpe 1.45-1.56 (all >= bench 1.41), maxDD -11.6% to -15.9% (all better than -19.4%) - perfectly flat surface, zero parameter luck.",
+    "3_subperiods": "HIT. C-minus-bench Sharpe by window: +0.17, -0.11, -0.03, +0.36, -0.13, 0.00 - the entire Sharpe edge lives in the one window containing the Apr-2025 crash (in-sample).",
+    "4_top_trade_concentration": "n/a (always-in sizing rule, 1 'trade').",
+    "5_deep_history": "not run in-repo (vol-managed-portfolio literature is external support; this sample contributes exactly one stress event).",
+    "6_cost_curve": "PASS trivially (turnover tiny: 3bp full Sharpe 1.53).",
+    "7_overlap": "daily corr 0.506 to A, 0.398 to B - it is a bench-like stream, diversifies little.",
+    "8_multiplicity_null": "Constant-exposure null (pos=0.93 always): full 1.41 / DD -18.3% vs vt 1.54 / -12.5% - in-sample the TIMING (not lower exposure) added the value; but OOS vt 1.08 / DD -8.8% vs constant 1.18 / -9.0% and vs bench 1.18 / -9.65%: OOS (no vol event) the timing added NOTHING and trailed bench Sharpe in all 12 grid cells (0.72-1.17 < 1.18).",
+    "verdict": "WEAKENED",
+    "one_line": "Not curve-fit (flat 12-cell plateau, beats a constant-exposure control in-sample) but its whole measured advantage is one episode - the in-sample Apr-2025 crash - and OOS it trailed buy-hold Sharpe in every cell with zero DD benefit over constant exposure: keep as a drawdown-control overlay on literature priors, book no Sharpe alpha from this sample."
+  },
+  "combined_portfolio": {
+    "A_B_C_is_vol_weighted": {"weights": {"A": 0.31, "B": 0.46, "C": 0.22}, "full_sharpe": 2.03, "is_sharpe": 1.89, "oos_sharpe": 2.34, "full_dd_pct": -6.8, "oos_dd_pct": -1.9, "ann_vol_pct": 6.0, "bench": {"full_sharpe": 1.40, "oos_sharpe": 1.22, "full_dd_pct": -19.0, "oos_dd_pct": -9.1, "ann_vol_pct": 15.0}, "note": "46% of risk sits in the killed candidate B"},
+    "A_C_only_post_kill": {"weights": {"A": 0.58, "C": 0.42}, "full_sharpe": 1.76, "oos_sharpe": 1.44, "full_dd_pct": -9.5, "oos_dd_pct": -3.8, "bench_oos_sharpe": 1.22, "bench_oos_dd_pct": -9.1}
+  },
+  "meta": {
+    "verifier": "adversarial verification pass, 2026-08-21",
+    "configs_tested_across_families": 167,
+    "attacks_code": "/tmp/bt30/verify.py",
+    "raw_outputs": "/tmp/bt30/verify_out.json",
+    "null_design": "matched trade-count/length random placements, 1.5bp costs, 200 experiments x 167 configs; pipeline bar = max OOS among top-15-by-IS (5 families x top-3)"
+  }
+}

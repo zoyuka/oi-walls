@@ -1,0 +1,78 @@
+name: Build OI Walls dashboard
+on:
+  schedule:
+    # All times UTC. Current entries assume EDT (UTC-4); in winter (EST) shift hours +1:
+    #   morning run -> "15 13 * * 1-5", intraday -> "4-59/10 14-21 * * 1-5"
+    - cron: "15 12 * * 1-5"         # 8:15am ET — morning baseline right after OCC OI refresh
+    - cron: "4-59/10 13-20 * * 1-5" # every 10 min, 9:04am–4:54pm ET (premarket through close)
+    - cron: "20 21 * * 1-5"         # 5:20pm ET post-close prep: session autopsy + next-day setup
+    - cron: "35 0,4,8 * * 1-5"      # overnight refreshes 8:35pm / 12:35am / 4:35am ET
+                                    # (keeps the 24h futures tab + overnight read current;
+                                    #  Mon 00:35 UTC = Sunday evening Globex open)
+  workflow_dispatch: {}              # manual trigger from GitHub app / API
+permissions:
+  contents: write
+  actions: write            # lets the watchdog step revive the live-quote loop
+concurrency:
+  group: build-dashboard
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pywebpush
+      - run: python make_site.py
+        env:
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+      - name: Revive live loop if stale during market hours
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'EOF'
+          import datetime as dt, json, os, urllib.request
+          from zoneinfo import ZoneInfo
+          now = dt.datetime.now(ZoneInfo("America/New_York"))
+          if now.weekday() >= 5:   # loop now runs ~23h weekdays (overnight watcher);
+              print("weekend"); raise SystemExit   # it self-exits when Globex is closed
+
+          hdr = {"Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                 "Accept": "application/vnd.github.raw+json"}
+          try:
+              rq = urllib.request.Request(
+                  "https://api.github.com/repos/${{ github.repository }}/contents/live.json?ref=live",
+                  headers=hdr)
+              d = json.load(urllib.request.urlopen(rq, timeout=15))
+              age = (dt.datetime.now(dt.timezone.utc)
+                     - dt.datetime.fromisoformat(d["ts"])).total_seconds()
+          except Exception as e:
+              print("live.json unreadable:", e); age = 1e9
+          print("live.json age:", int(min(age, 1e9)), "s")
+          if age > 300:
+              rq = urllib.request.Request(
+                  "https://api.github.com/repos/${{ github.repository }}/actions/workflows/live.yml/dispatches",
+                  data=b'{"ref":"main"}', method="POST",
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                           "Accept": "application/vnd.github+json"})
+              print("stale -> dispatching live loop:", urllib.request.urlopen(rq, timeout=15).status)
+          EOF
+      - name: Commit dashboard
+        run: |
+          git config user.name "walls-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add docs data
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          # Amend the previous bot commit instead of stacking 40+ commits/day,
+          # so the repo stays small despite intraday refreshes.
+          if [ "$(git log -1 --pretty=%an)" = "walls-bot" ]; then
+            git commit --amend -m "walls $(date -u '+%F %H:%M UTC')"
+            git push --force-with-lease
+          else
+            git commit -m "walls $(date -u '+%F %H:%M UTC')"
+            git push
+          fi
